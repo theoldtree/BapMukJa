@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "377800150810",
+    "project_id": "bapmukja-ebc4e",
+    "storage_bucket": "bapmukja-ebc4e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:377800150810:android:d236de4063b23e0df726a3",
+        "android_client_info": {
+          "package_name": "com.bapmukja"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "377800150810-u3itd6pdmpc5v13cgipb2j6d8j36o6nu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoDlOeWYqz_XIzzRmThYSVo_Lp8CpBqqE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "377800150810-u3itd6pdmpc5v13cgipb2j6d8j36o6nu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
