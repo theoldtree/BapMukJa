@@ -1,9 +1,22 @@
 // In App.js in a new project
-
-import * as React from "react";
-import RootNavigator from "./Navigation/Navigator/RootNavigator";
+import React, { useEffect } from "react";
+import RootNavigator from "./Navigation/Navigator/LoggedInNavigator";
 import firebase from "@react-native-firebase/app";
+import auth from "@react-native-firebase/auth";
+import { useState } from "react";
+import LoggedInNavigator from "./Navigation/Navigator/LoggedInNavigator";
+import LoggedOutNavigator from "./Navigation/Navigator/LoggedOutNavigator";
 
 export default function App() {
-  return <RootNavigator></RootNavigator>;
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  useEffect(() => {
+    auth().onAuthStateChanged((useer) => {
+      if (user) {
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false);
+      }
+    });
+  }, []);
+  return isLoggedIn ? <LoggedOutNavigator /> : <LoggedInNavigator />;
 }
