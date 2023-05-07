@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components/native';
-import {GRAY_COLOR} from '../../../Assets/Colors/color';
+import React from "react";
+import styled from "styled-components/native";
+import { GRAY_COLOR } from "../../../Assets/Colors/color";
 
 const Continer = styled.View``;
 
@@ -16,13 +16,19 @@ const TextInput = styled.TextInput`
   align-self: center;
   height: 50px;
   border-width: 1px;
+  padding: 2%;
 `;
 
-export default function SignupTextInputBox({title}) {
+export default function SignupTextInputBox({ title, value, onChangeText }) {
   return (
     <Continer>
       <Header>{title}</Header>
-      <TextInput />
+      <TextInput
+        value={value}
+        autoCapitalize="none"
+        onChangeText={onChangeText}
+        secureTextEntry
+      />
     </Continer>
   );
 }

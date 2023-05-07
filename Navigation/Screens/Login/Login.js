@@ -1,8 +1,9 @@
-import React from 'react';
-import styled from 'styled-components/native';
-import {Container} from '../../../Components/Container';
-import {GRAY_COLOR} from '../../../Assets/Colors/color';
-import CusomButton from '../../../Components/CutsomButton';
+import React, { useState } from "react";
+import styled from "styled-components/native";
+import { Container } from "../../../Components/Container";
+import { GRAY_COLOR } from "../../../Assets/Colors/color";
+import CusomButton from "../../../Components/CutsomButton";
+import auth from "@react-native-firebase/auth";
 
 const Logo = styled.Image`
   width: 100%;
@@ -32,31 +33,48 @@ const ButtonContainer = styled.View`
   margin-top: 10%;
 `;
 
-export default function Login({navigation}) {
+export default function Login({ navigation }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   return (
     <Container>
       <ImageCoverView>
         <Logo
-          source={require('../../../Assets/Image/logo.png')}
+          source={require("../../../Assets/Image/logo.png")}
           resizeMode="cover"
         />
       </ImageCoverView>
-      <TextInput placeholder="이메일" />
-      <TextInput placeholder="패스워드" />
+      <TextInput
+        placeholder="이메일"
+        keyboardType={"email-address"}
+        autoCapitalize="none"
+        onChangeText={(text) => {
+          setEmail(text);
+        }}
+      />
+      <TextInput
+        placeholder="패스워드"
+        autoCapitalize="none"
+        secureTextEntry
+        onChangeText={(text) => {
+          setPassword(text);
+        }}
+      />
       <ButtonContainer>
         <CusomButton
           backgroundcolor={GRAY_COLOR}
           bordercolor={GRAY_COLOR}
-          onPress={() => navigation.navigate('Signup')}
-          text={'회원가입'}
-          textcolor={'white'}
+          onPress={() => navigation.navigate("Signup")}
+          text={"회원가입"}
+          textcolor={"white"}
         />
         <CusomButton
-          backgroundcolor={'white'}
+          backgroundcolor={"white"}
           bordercolor={GRAY_COLOR}
-          onPress={() => navigation.navigate('Home')}
-          text={'로그인'}
-          textcolor={'black'}
+          onPress={() => navigation.navigate("Home")}
+          text={"로그인"}
+          textcolor={"black"}
         />
       </ButtonContainer>
     </Container>

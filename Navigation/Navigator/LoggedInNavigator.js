@@ -6,7 +6,6 @@ import FriendList from "../Screens/FriendList/FriendList";
 import GroupList from "../Screens/GroupList/GroupList";
 import FriendInvite from "../Screens/FriendInvite/FriendInvite";
 import GroupInvite from "../Screens/GroupInvite/GroupInvite";
-import Signup from "../Screens/Signup/Signup";
 import { FontAwesome } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import GroupTalk from "../Screens/GroupTalk/GroupTalk";
@@ -56,7 +55,6 @@ export default function LoggedInNavigator() {
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="FriendInvite" component={FriendInvite} />
         <Stack.Screen name="GroupInvite" component={GroupInvite} />
-        <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="GroupTalk" component={GroupTalk} />
       </Stack.Navigator>
     </NavigationContainer>

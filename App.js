@@ -8,9 +8,9 @@ import LoggedInNavigator from "./Navigation/Navigator/LoggedInNavigator";
 import LoggedOutNavigator from "./Navigation/Navigator/LoggedOutNavigator";
 
 export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   useEffect(() => {
-    auth().onAuthStateChanged((useer) => {
+    auth().onAuthStateChanged((user) => {
       if (user) {
         setIsLoggedIn(true);
       } else {
@@ -18,5 +18,5 @@ export default function App() {
       }
     });
   }, []);
-  return isLoggedIn ? <LoggedOutNavigator /> : <LoggedInNavigator />;
+  return isLoggedIn ? <LoggedInNavigator /> : <LoggedOutNavigator />;
 }
