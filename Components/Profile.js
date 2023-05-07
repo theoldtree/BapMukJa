@@ -15,7 +15,7 @@ export const ProfileView = styled.TouchableOpacity`
 `;
 
 export const ProfileText = styled.Text`
-  color: black;
+  color: ${SKY_BLUE_500};
 `;
 
 export default function Profile({ name, width }) {

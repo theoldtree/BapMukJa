@@ -1,18 +1,16 @@
-import React from 'react';
-import styled from 'styled-components/native';
-import {Container} from '../../../Components/Container';
-import Profile from '../../../Components/Profile';
-import {Title} from '../../../Components/Title';
+import React from "react";
+import styled from "styled-components/native";
+import { Container } from "../../../Components/Container";
+import Profile from "../../../Components/Profile";
 
 const ProfileList = styled.FlatList``;
 
 export default function MultipleProfileContainer({
-  title,
   list,
   listheadercomponent,
 }) {
-  const renderItem = ({item}) => {
-    return <Profile name={item.name} width={'92%'} />;
+  const renderItem = ({ item }) => {
+    return <Profile name={item.name} width={"92%"} />;
   };
 
   return (
@@ -21,7 +19,7 @@ export default function MultipleProfileContainer({
         ListHeaderComponent={listheadercomponent}
         data={list}
         renderItem={renderItem}
-        keyExtrator={list => list.id}
+        keyExtrator={(list) => list.id}
       />
     </Container>
   );

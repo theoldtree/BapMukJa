@@ -1,8 +1,9 @@
-import React from 'react';
-import styled from 'styled-components/native';
+import React from "react";
+import styled from "styled-components/native";
+import { SKY_BLUE_500 } from "../Assets/Colors/color";
 
 const MemberNameText = styled.Text`
-  color: black;
+  color: ${SKY_BLUE_500};
 `;
 
 const MemberlistView = styled.View`
@@ -14,8 +15,8 @@ const MemberlistView = styled.View`
 
 const MemberList = styled.FlatList``;
 
-export default function Member({data, keyExtrator}) {
-  const renderItem = ({item}) => {
+export default function Member({ data, keyExtrator }) {
+  const renderItem = ({ item }) => {
     return <MemberNameText>{item.name} </MemberNameText>;
   };
 

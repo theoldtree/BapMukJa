@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components/native";
-import { TextInputBox } from "../../../Components/TextInputBox";
 import { FontAwesome5 } from "@expo/vector-icons";
+import {
+  SKY_BLUE_100,
+  SKY_BLUE_400,
+  SKY_BLUE_500,
+} from "../../../Assets/Colors/color";
 
 const FoodSearchBoxContainer = styled.View`
   flex-direction: row;
@@ -15,19 +19,26 @@ const FoodSearhBox = styled.TextInput`
   height: 60px;
   flex: 1;
   margin: 2%;
+  border-radius: 2px;
+  padding-left: 4%;
+  border-color: ${SKY_BLUE_400};
 `;
 
 const IconButton = styled.TouchableOpacity`
   border-width: 1px;
+  border-radius: 9px;
+  border-color: ${SKY_BLUE_500};
   margin-right: 2%;
+  background-color: ${SKY_BLUE_100};
+  padding: 1%;
 `;
 
 export default function InputBox() {
   return (
     <FoodSearchBoxContainer>
-      <FoodSearhBox placeholder={" 맛집, 음식이름 입력"} />
+      <FoodSearhBox placeholder={"  맛집, 음식이름 입력"} />
       <IconButton>
-        <FontAwesome5 name="plus" size={30} color="black" />
+        <FontAwesome5 name="plus" size={30} color={SKY_BLUE_400} />
       </IconButton>
     </FoodSearchBoxContainer>
   );

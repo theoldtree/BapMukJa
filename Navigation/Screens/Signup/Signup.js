@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import styled from "styled-components/native";
 import { Container } from "../../../Components/Container";
-import { GRAY_COLOR_200 } from "../../../Assets/Colors/color";
+import { GRAY_COLOR_200, SKY_BLUE_500 } from "../../../Assets/Colors/color";
 import CustomButton from "../../../Components/CutsomButton";
 import SignupTextInputBox from "./SignupTextInputBox";
 import SignupTextInputBoxWithButton from "./SignupTextinpuBoxWithButton";
@@ -131,7 +131,7 @@ export default function Signup({ navigation }) {
           onPress={() => {
             onPressLogin();
           }}
-          textcolor={"black"}
+          textcolor={SKY_BLUE_500}
           text={"가입하기 - !"}
           activity={loading}
         />

@@ -5,7 +5,7 @@ import { GRAY_COLOR_300 } from "../../../Assets/Colors/color";
 const Continer = styled.View``;
 
 const Header = styled.Text`
-  color: black;
+  color: ${SKY_BLUE_500};
   margin: 2%;
   margin-left: 7%;
 `;

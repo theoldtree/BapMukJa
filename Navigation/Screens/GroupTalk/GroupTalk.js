@@ -4,7 +4,7 @@ import { Container } from "../../../Components/Container";
 import BackHeader from "../../../Components/BackHeader";
 import Member from "../../../Components/Member";
 import { Title } from "../../../Components/Title";
-import { GRAY_COLOR_200 } from "../../../Assets/Colors/color";
+import { GRAY_COLOR_400, SKY_BLUE_500 } from "../../../Assets/Colors/color";
 import FeelingContainer from "./FeelingContainer";
 import InputBox from "./InputBox";
 
@@ -13,13 +13,14 @@ const TalkList = styled.SectionList``;
 const TitleBold = styled(Title)`
   font-weight: bold;
   font-size: 18px;
+  color: ${SKY_BLUE_500};
   margin: 2px;
 `;
 
 const DateView = styled.View`
   align-self: center;
   border-radius: 5px;
-  border-color: ${GRAY_COLOR_200};
+  border-color: ${GRAY_COLOR_400};
   align-items: center;
   justify-content: center;
   border-width: 1px;

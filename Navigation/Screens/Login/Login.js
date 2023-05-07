@@ -1,11 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components/native";
 import { Container } from "../../../Components/Container";
 import {
-  GRAY_COLOR,
   GRAY_COLOR_200,
-  GRAY_COLOR_300,
   GRAY_COLOR_400,
+  SKY_BLUE_500,
 } from "../../../Assets/Colors/color";
 import CusomButton from "../../../Components/CutsomButton";
 import auth from "@react-native-firebase/auth";
@@ -123,7 +122,7 @@ export default function Login({ navigation }) {
             onSubmitLogin();
           }}
           text={"로그인"}
-          textcolor={"black"}
+          textcolor={SKY_BLUE_500}
           activity={loading}
           buttonwidth={"80%"}
         />
