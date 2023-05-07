@@ -7,7 +7,7 @@ import SignupTextInputBox from "./SignupTextInputBox";
 import SignupTextInputBoxWithButton from "./SignupTextinpuBoxWithButton";
 import { BottomContentsContainer } from "../../../Components/BottomContentsContainer";
 import { Alert } from "react-native";
-import auth from "@react-native-firebase/auth";
+import auth, { firebase } from "@react-native-firebase/auth";
 
 const GroupContainer = styled.View`
   margin-top: 3%;
@@ -47,17 +47,28 @@ export default function Signup({ navigation }) {
     if (loading) return;
     setLoading(true);
     try {
-      await auth().createUserWithEmailAndPassword(email, passwordCheck);
+      const userCredential = await auth().createUserWithEmailAndPassword(
+        email,
+        passwordCheck
+      );
+      console.log(userCredential);
+      await firebase.auth().signOut();
+      navigation.navigate("Login");
     } catch (error) {
-      console.log(error);
-      if (error.code === "auth/invalid-email")
-        return Alert.alert("유효하지 않은 이메일 형식입니다");
-      if (error.code === "auth/email-already-in-use")
-        return Alert.alert("이미 사용하고 있는 계정입니다");
-      if (password !== passwordCheck)
-        return Alert.alert("패스워드 재확인이 일치하지 않습니다");
-      if (error.code === "auth/weak-password")
-        return Alert.alert("보안강도가 낮은 암호 입니다");
+      switch (error.code) {
+        case "auth/invalid-email":
+          return Alert.alert("유효하지 않은 이메일 형식입니다");
+          break;
+        case "auth/email-already-in-use":
+          return Alert.alert("이미 사용하고 있는 계정입니다");
+          break;
+        case "auth/weak-password":
+          return Alert.alert("보안강도가 낮은 암호 입니다");
+          break;
+        default:
+          if (password !== passwordCheck)
+            return Alert.alert("패스워드 재확인이 일치하지 않습니다");
+      }
     } finally {
       setLoading(false);
     }
@@ -91,7 +102,9 @@ export default function Signup({ navigation }) {
       </GroupContainer>
       <GroupContainer>
         <SignupTextInputBoxWithButton
-          title={"패스워드 (6글자이상 + 영문,숫자 최소 하나씩 이상 조합하깅~)"}
+          title={
+            "패스워드( 6글자이상 + 영문,숫자 최소 하나씩 이상 조합하깅 -! )"
+          }
           buttonText={"비밀번호 찾기"}
           value={password}
           onChangeText={(text) => {
@@ -115,7 +128,6 @@ export default function Signup({ navigation }) {
           bordercolor={GRAY_COLOR}
           onPress={() => {
             onPressLogin();
-            // navigation.navigate("Login");
           }}
           textcolor={"black"}
           text={"가입하기 - !"}
