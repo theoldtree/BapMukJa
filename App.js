@@ -9,6 +9,7 @@ import LoggedOutNavigator from "./Navigation/Navigator/LoggedOutNavigator";
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // auth().signOut();
   useEffect(() => {
     auth().onAuthStateChanged((user) => {
       if (user) {

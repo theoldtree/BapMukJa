@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components/native";
 import { Container } from "../../../Components/Container";
 import { GRAY_COLOR } from "../../../Assets/Colors/color";
@@ -36,6 +36,20 @@ const ButtonContainer = styled.View`
 export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const onSubmitLogin = async () => {
+    try {
+      const userCredential = await auth().signInWithEmailAndPassword(
+        email,
+        password
+      );
+      console.log(userCredential);
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <Container>
@@ -72,9 +86,12 @@ export default function Login({ navigation }) {
         <CusomButton
           backgroundcolor={"white"}
           bordercolor={GRAY_COLOR}
-          onPress={() => navigation.navigate("Home")}
+          onPress={() => {
+            onSubmitLogin();
+          }}
           text={"로그인"}
           textcolor={"black"}
+          activity={loading}
         />
       </ButtonContainer>
     </Container>
