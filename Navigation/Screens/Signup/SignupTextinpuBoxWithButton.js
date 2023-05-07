@@ -37,6 +37,7 @@ export default function SignupTextInputBoxWithButton({
   secureTextEntry,
   keyboardType,
   autoCapitalize,
+  onref,
 }) {
   return (
     <Continer>
@@ -49,6 +50,7 @@ export default function SignupTextInputBoxWithButton({
           secureTextEntry={secureTextEntry}
           keyboardType={keyboardType}
           autoCapitalize={autoCapitalize}
+          ref={onref}
         />
         <CustomButton
           backgroundcolor={GRAY_COLOR}

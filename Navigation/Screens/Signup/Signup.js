@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components/native";
 import { Container } from "../../../Components/Container";
 import { GRAY_COLOR } from "../../../Assets/Colors/color";
@@ -21,19 +21,43 @@ export default function Signup({ navigation }) {
   const [passwordCheck, setPasswordCheck] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const emailInputRef = useRef(null);
+  const passwordInputRef = useRef(null);
+  const authnumberInputRef = useRef(null);
+  const passwordCheckInputRef = useRef(null);
+
   const onPressLogin = async () => {
     console.log("buttonpressed");
-    if (email === "" || passwordCheck === "") {
-      return Alert.alert(
-        "유효하지 않은 이메일이거나 암호입니다. 내용을 입력해주세요"
-      );
+    if (!email) {
+      emailInputRef.current.focus();
+      return Alert.alert("내용을 입력해주세요");
+    }
+    if (!authnumber) {
+      authnumberInputRef.current.focus();
+      return Alert.alert("내용을 입력해주세요");
+    }
+    if (!password) {
+      passwordInputRef.current.focus();
+      return Alert.alert("내용을 입력해주세요");
+    }
+    if (!passwordCheck) {
+      passwordCheckInputRef.current.focus();
+      return Alert.alert("내용을 입력해주세요");
     }
     if (loading) return;
     setLoading(true);
     try {
-      await auth().createUserWithEmailAndPassword(email, password);
+      await auth().createUserWithEmailAndPassword(email, passwordCheck);
     } catch (error) {
-      console.log(error.message);
+      console.log(error);
+      if (error.code === "auth/invalid-email")
+        return Alert.alert("유효하지 않은 이메일 형식입니다");
+      if (error.code === "auth/email-already-in-use")
+        return Alert.alert("이미 사용하고 있는 계정입니다");
+      if (password !== passwordCheck)
+        return Alert.alert("패스워드 재확인이 일치하지 않습니다");
+      if (error.code === "auth/weak-password")
+        return Alert.alert("보안강도가 낮은 암호 입니다");
     } finally {
       setLoading(false);
     }
@@ -51,6 +75,7 @@ export default function Signup({ navigation }) {
           }}
           keyboardType={"email-address"}
           autoCapitalize="none"
+          onref={emailInputRef}
         />
         <SignupTextInputBoxWithButton
           title={"인증번호"}
@@ -61,11 +86,12 @@ export default function Signup({ navigation }) {
           }}
           secureTextEntry={false}
           keyboardType={"number-pad"}
+          onref={authnumberInputRef}
         />
       </GroupContainer>
       <GroupContainer>
         <SignupTextInputBoxWithButton
-          title={"패스워드"}
+          title={"패스워드 (6글자이상 + 영문,숫자 최소 하나씩 이상 조합하깅~)"}
           buttonText={"비밀번호 찾기"}
           value={password}
           onChangeText={(text) => {
@@ -73,12 +99,14 @@ export default function Signup({ navigation }) {
           }}
           secureTextEntry={true}
           autoCapitalize="none"
+          onref={passwordInputRef}
         />
         <SignupTextInputBox
           title={"패스워드 재확인"}
           value={passwordCheck}
           onChangeText={(text) => setPasswordCheck(text)}
           autoCapitalize="none"
+          onref={passwordCheckInputRef}
         />
       </GroupContainer>
       <BottomContentsContainer>

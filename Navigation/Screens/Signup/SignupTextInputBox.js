@@ -19,7 +19,12 @@ const TextInput = styled.TextInput`
   padding: 2%;
 `;
 
-export default function SignupTextInputBox({ title, value, onChangeText }) {
+export default function SignupTextInputBox({
+  title,
+  value,
+  onChangeText,
+  onref,
+}) {
   return (
     <Continer>
       <Header>{title}</Header>
@@ -28,6 +33,7 @@ export default function SignupTextInputBox({ title, value, onChangeText }) {
         autoCapitalize="none"
         onChangeText={onChangeText}
         secureTextEntry
+        ref={onref}
       />
     </Continer>
   );
