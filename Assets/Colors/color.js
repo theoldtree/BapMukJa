@@ -1,3 +1,10 @@
-export const GRAY_COLOR = "#6C6C6C";
-export const SKY_BLUE_HEADER = "#c3d9e3";
-export const SKY_BLUE_TAB = "#8bc4df";
+export const GRAY_COLOR_100 = "#a8b2b9";
+export const GRAY_COLOR_200 = "#848D93";
+export const GRAY_COLOR_300 = "#4B5B65";
+export const GRAY_COLOR_400 = "#3C4449";
+
+export const SKY_BLUE_100 = "#D3E5F1";
+export const SKY_BLUE_200 = "#648FAB";
+export const SKY_BLUE_300 = "#41647B";
+export const SKY_BLUE_400 = "#122c3d";
+export const SKY_BLUE_500 = "#030404";

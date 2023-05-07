@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ActivityIndicator } from "react-native";
 import styled from "styled-components/native";
-import { GRAY_COLOR } from "../Assets/Colors/color";
+import { GRAY_COLOR_300 } from "../Assets/Colors/color";
 
 const Button = styled.TouchableOpacity`
   align-items: center;
@@ -12,6 +12,7 @@ const Button = styled.TouchableOpacity`
   height: 40px;
   margin: 2%;
   border-color: ${(props) => props.bordercolor};
+  width: ${({ width }) => (width ? width : "auto")};
 `;
 
 const Text = styled.Text`
@@ -28,15 +29,17 @@ export default function CustomButton({
   onPress,
   text,
   activity,
+  buttonwidth,
 }) {
   return (
     <Button
       backgroundcolor={backgroundcolor}
       bordercolor={bordercolor}
       onPress={onPress}
+      width={buttonwidth}
     >
       {activity ? (
-        <ActivityIndicator color={GRAY_COLOR} />
+        <ActivityIndicator color={GRAY_COLOR_300} />
       ) : (
         <Text textcolor={textcolor}>{text}</Text>
       )}

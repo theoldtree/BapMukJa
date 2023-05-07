@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import styled from "styled-components/native";
 import { Container } from "../../../Components/Container";
-import { GRAY_COLOR } from "../../../Assets/Colors/color";
+import { GRAY_COLOR_200 } from "../../../Assets/Colors/color";
 import CustomButton from "../../../Components/CutsomButton";
 import SignupTextInputBox from "./SignupTextInputBox";
 import SignupTextInputBoxWithButton from "./SignupTextinpuBoxWithButton";
@@ -127,7 +127,7 @@ export default function Signup({ navigation }) {
       <BottomContentsContainer>
         <CustomButton
           backgroundcolor={"white"}
-          bordercolor={GRAY_COLOR}
+          bordercolor={GRAY_COLOR_200}
           onPress={() => {
             onPressLogin();
           }}

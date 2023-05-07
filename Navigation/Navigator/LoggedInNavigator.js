@@ -9,7 +9,11 @@ import GroupInvite from "../Screens/GroupInvite/GroupInvite";
 import { FontAwesome } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import GroupTalk from "../Screens/GroupTalk/GroupTalk";
-import { SKY_BLUE_HEADER } from "../../Assets/Colors/color";
+import {
+  SKY_BLUE_100,
+  SKY_BLUE_200,
+  SKY_BLUE_400,
+} from "../../Assets/Colors/color";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -19,11 +23,11 @@ function Home() {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: "#000000",
-        tabBarInactiveTintColor: "#6C6C6C",
+        tabBarActiveTintColor: SKY_BLUE_400,
+        tabBarInactiveTintColor: SKY_BLUE_100,
         tabBarShowLabel: false,
         tabBarStyle: {
-          backgroundColor: SKY_BLUE_HEADER,
+          backgroundColor: SKY_BLUE_200,
         },
       }}
     >

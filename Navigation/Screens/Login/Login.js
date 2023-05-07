@@ -1,7 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components/native";
 import { Container } from "../../../Components/Container";
-import { GRAY_COLOR } from "../../../Assets/Colors/color";
+import {
+  GRAY_COLOR,
+  GRAY_COLOR_200,
+  GRAY_COLOR_300,
+  GRAY_COLOR_400,
+} from "../../../Assets/Colors/color";
 import CusomButton from "../../../Components/CutsomButton";
 import auth from "@react-native-firebase/auth";
 import { Alert } from "react-native";
@@ -20,18 +25,19 @@ const ImageCoverView = styled.View`
 `;
 
 const TextInput = styled.TextInput`
-  border-color: ${GRAY_COLOR};
+  border-color: ${GRAY_COLOR_400};
   border-width: 1px;
-  width: 70%;
+  width: 80%;
   height: 60px;
   align-self: center;
   margin: 2%;
   padding-left: 20px;
+  border-radius: 2px;
 `;
 
 const ButtonContainer = styled.View`
-  align-items: center;
   margin-top: 10%;
+  align-items: center;
 `;
 
 export default function Login({ navigation }) {
@@ -103,21 +109,23 @@ export default function Login({ navigation }) {
       />
       <ButtonContainer>
         <CusomButton
-          backgroundcolor={GRAY_COLOR}
-          bordercolor={GRAY_COLOR}
+          backgroundcolor={GRAY_COLOR_200}
+          bordercolor={GRAY_COLOR_200}
           onPress={() => navigation.navigate("Signup")}
           text={"회원가입"}
           textcolor={"white"}
+          buttonwidth={"80%"}
         />
         <CusomButton
           backgroundcolor={"white"}
-          bordercolor={GRAY_COLOR}
+          bordercolor={GRAY_COLOR_200}
           onPress={() => {
             onSubmitLogin();
           }}
           text={"로그인"}
           textcolor={"black"}
           activity={loading}
+          buttonwidth={"80%"}
         />
       </ButtonContainer>
     </Container>

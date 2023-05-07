@@ -1,12 +1,12 @@
-import React, {useState} from 'react';
-import styled from 'styled-components/native';
-import {Container} from '../../../Components/Container';
-import BackHeader from '../../../Components/BackHeader';
-import Member from '../../../Components/Member';
-import {Title} from '../../../Components/Title';
-import {GRAY_COLOR} from '../../../Assets/Colors/color';
-import FeelingContainer from './FeelingContainer';
-import InputBox from './InputBox';
+import React, { useState } from "react";
+import styled from "styled-components/native";
+import { Container } from "../../../Components/Container";
+import BackHeader from "../../../Components/BackHeader";
+import Member from "../../../Components/Member";
+import { Title } from "../../../Components/Title";
+import { GRAY_COLOR_200 } from "../../../Assets/Colors/color";
+import FeelingContainer from "./FeelingContainer";
+import InputBox from "./InputBox";
 
 const TalkList = styled.SectionList``;
 
@@ -19,7 +19,7 @@ const TitleBold = styled(Title)`
 const DateView = styled.View`
   align-self: center;
   border-radius: 5px;
-  border-color: ${GRAY_COLOR};
+  border-color: ${GRAY_COLOR_200};
   align-items: center;
   justify-content: center;
   border-width: 1px;
@@ -33,10 +33,10 @@ const FoodView = styled.View`
   justify-content: space-between;
 `;
 
-export default function GroupTalk({route, navigation}) {
-  const {groupInfo} = route.params;
+export default function GroupTalk({ route, navigation }) {
+  const { groupInfo } = route.params;
 
-  const renderHeader = ({section}) => {
+  const renderHeader = ({ section }) => {
     return (
       <DateView>
         <Title>{section.title}</Title>
@@ -44,7 +44,7 @@ export default function GroupTalk({route, navigation}) {
     );
   };
 
-  const renderItem = ({item}) => {
+  const renderItem = ({ item }) => {
     return (
       <FoodView>
         <Title>{item.food}</Title>
@@ -57,7 +57,7 @@ export default function GroupTalk({route, navigation}) {
     <Container>
       <BackHeader
         title={groupInfo.name}
-        onPress={() => navigation.navigate('Home', {screen: 'GroupList'})}
+        onPress={() => navigation.navigate("Home", { screen: "GroupList" })}
       />
       <TitleBold>참여</TitleBold>
       <Member data={groupInfo.member} keyExtrator={groupInfo.member.id} />
@@ -65,7 +65,7 @@ export default function GroupTalk({route, navigation}) {
         sections={groupInfo.talkRecord}
         renderSectionHeader={renderHeader}
         renderItem={renderItem}
-        keyExtrator={item => item.date}
+        keyExtrator={(item) => item.date}
       />
       <InputBox />
     </Container>

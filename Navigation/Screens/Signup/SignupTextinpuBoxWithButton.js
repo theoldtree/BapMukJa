@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components/native";
 import CustomButton from "../../../Components/CutsomButton";
-import { GRAY_COLOR } from "../../../Assets/Colors/color";
+import { GRAY_COLOR_200 } from "../../../Assets/Colors/color";
 
 const Continer = styled.View``;
 
@@ -21,7 +21,7 @@ const TextIputButtonContainer = styled.View`
 
 const TextInput = styled.TextInput`
   padding: 2%;
-  border-color: ${GRAY_COLOR};
+  border-color: ${GRAY_COLOR_200};
   align-self: center;
   height: 50px;
   border-width: 1px;
@@ -53,9 +53,9 @@ export default function SignupTextInputBoxWithButton({
           ref={onref}
         />
         <CustomButton
-          backgroundcolor={GRAY_COLOR}
+          backgroundcolor={GRAY_COLOR_200}
           text={buttonText}
-          bordercolor={GRAY_COLOR}
+          bordercolor={GRAY_COLOR_200}
           textcolor={"white"}
           autoCapitalize={autoCapitalize}
         />

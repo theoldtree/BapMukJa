@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components/native";
-import { GRAY_COLOR } from "../../../Assets/Colors/color";
+import { GRAY_COLOR_300 } from "../../../Assets/Colors/color";
 
 const Continer = styled.View``;
 
@@ -11,7 +11,7 @@ const Header = styled.Text`
 `;
 
 const TextInput = styled.TextInput`
-  border-color: ${GRAY_COLOR};
+  border-color: ${GRAY_COLOR_300};
   width: 92%;
   align-self: center;
   height: 50px;
