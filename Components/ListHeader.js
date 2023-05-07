@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components/native";
-import { Ionicons } from "@expo/vector-icons";
-import { MaterialIcons } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
-import { MaterialIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import auth from "@react-native-firebase/auth";
+import { Alert } from "react-native";
 
 const Header = styled.View`
   height: 55px;
@@ -19,16 +19,32 @@ const Icon = styled.TouchableOpacity`
 `;
 
 export default function ListHeader({ iconName, onPress }) {
+  const onPressLogout = () => {
+    Alert.alert("정말 로그아웃 하시겠습니까?", "", [
+      { text: "취소" },
+      {
+        text: "확인",
+        onPress: async () => {
+          await auth().signOut();
+        },
+      },
+    ]);
+  };
+
   return (
     <Header>
       <Icon onPress={onPress}>
-        {iconName === "person-add" ? (
-          <Ionicons name={iconName} size={24} color="black" />
+        {iconName === "adduser" ? (
+          <AntDesign name={iconName} size={24} color="black" />
         ) : (
-          <MaterialIcons name="group-add" size={35} color="black" />
+          <MaterialCommunityIcons
+            name="account-multiple-plus"
+            size={30}
+            color="black"
+          />
         )}
       </Icon>
-      <Icon>
+      <Icon onPress={onPressLogout}>
         <Feather name="log-out" size={24} color="black" />
       </Icon>
     </Header>

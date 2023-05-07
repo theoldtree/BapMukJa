@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components/native";
 import { Container } from "../../../Components/Container";
 import { GRAY_COLOR } from "../../../Assets/Colors/color";
 import CusomButton from "../../../Components/CutsomButton";
 import auth from "@react-native-firebase/auth";
+import { Alert } from "react-native";
 
 const Logo = styled.Image`
   width: 100%;
@@ -38,7 +39,18 @@ export default function Login({ navigation }) {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const emailInputRef = useRef(null);
+  const passwordInputRef = useRef(null);
+
   const onSubmitLogin = async () => {
+    if (!email) {
+      emailInputRef.current.focus();
+      return Alert.alert("이메일을 입력해 주세요");
+    }
+    if (!password) {
+      emailInputRef.current.focus();
+      return Alert.alert("패스워드를 입력해 주세요");
+    }
     try {
       const userCredential = await auth().signInWithEmailAndPassword(
         email,
