@@ -5,11 +5,12 @@ import { AntDesign } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import auth from "@react-native-firebase/auth";
 import { Alert } from "react-native";
+import { SKY_BLUE_TAB } from "../Assets/Colors/color";
 
 const Header = styled.View`
   height: 55px;
   flex-direction: row;
-  background-color: white;
+  background-color: ${SKY_BLUE_TAB};
   align-items: center;
   justify-content: flex-end;
 `;

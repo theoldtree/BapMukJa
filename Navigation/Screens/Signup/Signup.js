@@ -8,6 +8,7 @@ import SignupTextInputBoxWithButton from "./SignupTextinpuBoxWithButton";
 import { BottomContentsContainer } from "../../../Components/BottomContentsContainer";
 import { Alert } from "react-native";
 import auth, { firebase } from "@react-native-firebase/auth";
+import BackHeader from "../../../Components/BackHeader";
 
 const GroupContainer = styled.View`
   margin-top: 3%;
@@ -76,6 +77,7 @@ export default function Signup({ navigation }) {
 
   return (
     <Container>
+      <BackHeader onPress={() => navigation.navigate("Login")} />
       <GroupContainer>
         <SignupTextInputBoxWithButton
           title={"이메일"}

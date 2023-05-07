@@ -51,6 +51,8 @@ export default function Login({ navigation }) {
       emailInputRef.current.focus();
       return Alert.alert("패스워드를 입력해 주세요");
     }
+    if (loading) return;
+    setLoading(true);
     try {
       const userCredential = await auth().signInWithEmailAndPassword(
         email,
@@ -58,6 +60,16 @@ export default function Login({ navigation }) {
       );
       console.log(userCredential);
     } catch (error) {
+      console.log(error.code);
+      switch (error.code) {
+        case "auth/invalid-email":
+        case "auth/user-not-found":
+          return Alert.alert("존재하지 않는 이메일 계정입니다");
+          break;
+        case "auth/wrong-password":
+          return Alert.alert("패스워드가 일치하지 않습니다");
+          break;
+      }
     } finally {
       setLoading(false);
     }
@@ -78,6 +90,7 @@ export default function Login({ navigation }) {
         onChangeText={(text) => {
           setEmail(text);
         }}
+        ref={emailInputRef}
       />
       <TextInput
         placeholder="패스워드"
@@ -86,6 +99,7 @@ export default function Login({ navigation }) {
         onChangeText={(text) => {
           setPassword(text);
         }}
+        ref={passwordInputRef}
       />
       <ButtonContainer>
         <CusomButton

@@ -9,6 +9,7 @@ import GroupInvite from "../Screens/GroupInvite/GroupInvite";
 import { FontAwesome } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import GroupTalk from "../Screens/GroupTalk/GroupTalk";
+import { SKY_BLUE_HEADER } from "../../Assets/Colors/color";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -22,7 +23,7 @@ function Home() {
         tabBarInactiveTintColor: "#6C6C6C",
         tabBarShowLabel: false,
         tabBarStyle: {
-          backgroundColor: "#EFEFEF",
+          backgroundColor: SKY_BLUE_HEADER,
         },
       }}
     >
