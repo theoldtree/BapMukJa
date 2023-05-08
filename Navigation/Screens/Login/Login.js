@@ -118,9 +118,7 @@ export default function Login({ navigation }) {
         <CusomButton
           backgroundcolor={"white"}
           bordercolor={GRAY_COLOR_200}
-          onPress={() => {
-            onSubmitLogin();
-          }}
+          onPress={onSubmitLogin}
           text={"로그인"}
           textcolor={SKY_BLUE_500}
           activity={loading}

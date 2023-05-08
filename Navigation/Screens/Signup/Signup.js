@@ -128,9 +128,7 @@ export default function Signup({ navigation }) {
         <CustomButton
           backgroundcolor={"white"}
           bordercolor={GRAY_COLOR_200}
-          onPress={() => {
-            onPressLogin();
-          }}
+          onPress={onPressLogin}
           textcolor={SKY_BLUE_500}
           text={"가입하기 - !"}
           activity={loading}
