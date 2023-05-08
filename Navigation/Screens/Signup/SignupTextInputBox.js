@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components/native";
-import { GRAY_COLOR_300 } from "../../../Assets/Colors/color";
+import { GRAY_COLOR_300, SKY_BLUE_500 } from "../../../Assets/Colors/color";
 
 const Continer = styled.View``;
 

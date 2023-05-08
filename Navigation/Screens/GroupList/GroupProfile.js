@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { ProfileView } from "../../../Components/Profile";
 import Member from "../../../Components/Member";
+import { SKY_BLUE_500 } from "../../../Assets/Colors/color";
 
 const GroupNameText = styled.Text`
   color: ${SKY_BLUE_500};

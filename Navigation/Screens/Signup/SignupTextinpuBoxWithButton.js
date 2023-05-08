@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components/native";
 import CustomButton from "../../../Components/CutsomButton";
-import { GRAY_COLOR_200 } from "../../../Assets/Colors/color";
+import { GRAY_COLOR_200, SKY_BLUE_500 } from "../../../Assets/Colors/color";
 
 const Continer = styled.View``;
 
