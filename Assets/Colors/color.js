@@ -8,3 +8,5 @@ export const SKY_BLUE_200 = "#648FAB";
 export const SKY_BLUE_300 = "#41647B";
 export const SKY_BLUE_400 = "#122c3d";
 export const SKY_BLUE_500 = "#030404";
+
+export const RED_COLOR_300 = "#DC3545";

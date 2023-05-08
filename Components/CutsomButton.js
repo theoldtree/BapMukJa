@@ -6,20 +6,20 @@ import { GRAY_COLOR_300 } from "../Assets/Colors/color";
 const Button = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
-  background-color: ${(props) => props.backgroundcolor};
+  background-color: ${({ backgroundcolor }) => backgroundcolor};
   border-radius: 3px;
   border-width: 1px;
   height: 40px;
   margin: 2%;
-  border-color: ${(props) => props.bordercolor};
-  width: ${({ width }) => (width ? width : "auto")};
+  border-color: ${({ bordercolor }) => bordercolor};
+  width: ${({ width }) => width || "auto"};
 `;
 
 const Text = styled.Text`
   font-size: 13px;
   margin-left: 15px;
   margin-right: 15px;
-  color: ${(props) => props.textcolor};
+  color: ${({ textcolor }) => textcolor};
 `;
 
 export default function CustomButton({
