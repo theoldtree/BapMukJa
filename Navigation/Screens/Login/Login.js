@@ -96,6 +96,7 @@ export default function Login({ navigation }) {
           setEmail(text);
         }}
         ref={emailInputRef}
+        maxLength={40}
       />
       <TextInput
         placeholder="패스워드"
@@ -105,6 +106,7 @@ export default function Login({ navigation }) {
           setPassword(text);
         }}
         ref={passwordInputRef}
+        maxLength={40}
       />
       <ButtonContainer>
         <CusomButton

@@ -13,8 +13,8 @@ export default function GroupInvite({ navigation }) {
         title={"그룹초대"}
         onPress={() => navigation.navigate("Home", { screen: "GroupInvite" })}
       />
-      <TextInputBox placeholder="그룹 이름 설정" />
-      <TextInputBox placeholder="이름(초성),전화번호 검색" />
+      <TextInputBox placeholder="그룹 이름 설정" maxLength={40} />
+      <TextInputBox placeholder="이름(초성),전화번호 검색" maxLength={40} />
       <BottomContentsContainer>
         <CustomButton
           text={"생성하기"}

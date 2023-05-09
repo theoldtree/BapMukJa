@@ -1,6 +1,5 @@
 // In App.js in a new project
 import React, { useEffect } from "react";
-import RootNavigator from "./Navigation/Navigator/LoggedInNavigator";
 import firebase from "@react-native-firebase/app";
 import auth from "@react-native-firebase/auth";
 import { useState } from "react";

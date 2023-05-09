@@ -51,6 +51,7 @@ export default function SignupTextInputBoxWithButton({
           keyboardType={keyboardType}
           autoCapitalize={autoCapitalize}
           ref={onref}
+          maxLength={40}
         />
         <CustomButton
           backgroundcolor={GRAY_COLOR_200}
