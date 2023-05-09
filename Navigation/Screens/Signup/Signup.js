@@ -57,24 +57,28 @@ export default function Signup({ navigation }) {
         email,
         passwordCheck
       );
-      console.log(userCredential.uid);
+      console.log(userCredential.user.uid);
+      const useradd = await firestore()
+        .collection("users")
+        .doc(userCredential.user.uid)
+        .set({
+          name: name,
+        });
+      console.log("useradd" + useradd);
       await firebase.auth().signOut();
       navigation.navigate("Login");
     } catch (error) {
       switch (error.code) {
         case "auth/invalid-email":
           return Alert.alert("유효하지 않은 이메일 형식입니다");
-          break;
         case "auth/email-already-in-use":
           return Alert.alert("이미 사용하고 있는 계정입니다");
-          break;
         case "auth/weak-password":
           return Alert.alert("보안강도가 낮은 암호 입니다");
-          break;
-        default:
-          if (password !== passwordCheck)
-            return Alert.alert("패스워드 재확인이 일치하지 않습니다");
       }
+      if (password !== passwordCheck)
+        return Alert.alert("패스워드 재확인이 일치하지 않습니다");
+      else console.log(error);
     } finally {
       setLoading(false);
     }
