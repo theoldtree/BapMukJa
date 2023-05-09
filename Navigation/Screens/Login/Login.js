@@ -63,7 +63,7 @@ export default function Login({ navigation }) {
         email,
         password
       );
-      console.log(userCredential);
+      console.log(userCredential.user.uid);
     } catch (error) {
       console.log(error.code);
       switch (error.code) {

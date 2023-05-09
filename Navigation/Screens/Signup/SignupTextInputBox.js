@@ -2,7 +2,9 @@ import React from "react";
 import styled from "styled-components/native";
 import { GRAY_COLOR_300, SKY_BLUE_500 } from "../../../Assets/Colors/color";
 
-const Continer = styled.View``;
+const Continer = styled.View`
+  margin-top: 2%;
+`;
 
 const Header = styled.Text`
   color: ${SKY_BLUE_500};
@@ -24,6 +26,7 @@ export default function SignupTextInputBox({
   value,
   onChangeText,
   onref,
+  keyboardType,
 }) {
   return (
     <Continer>
@@ -34,6 +37,7 @@ export default function SignupTextInputBox({
         onChangeText={onChangeText}
         secureTextEntry
         ref={onref}
+        keyboardType={keyboardType}
       />
     </Continer>
   );

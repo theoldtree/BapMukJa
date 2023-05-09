@@ -5,23 +5,24 @@ import { GRAY_COLOR_200, SKY_BLUE_500 } from "../../../Assets/Colors/color";
 import CustomButton from "../../../Components/CutsomButton";
 import SignupTextInputBox from "./SignupTextInputBox";
 import SignupTextInputBoxWithButton from "./SignupTextinpuBoxWithButton";
-import { BottomContentsContainer } from "../../../Components/BottomContentsContainer";
-import { Alert } from "react-native";
+import { Alert, KeyboardAvoidingView } from "react-native";
 import auth, { firebase } from "@react-native-firebase/auth";
 import BackHeader from "../../../Components/BackHeader";
+import firestore from "@react-native-firebase/firestore";
 
-const GroupContainer = styled.View`
-  margin-top: 3%;
-  margin-bottom: 7%;
+const ButtonContainer = styled.View`
+  margin-top: 45%;
 `;
 
 export default function Signup({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
   const [authnumber, setAuthnumber] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const nameInputRef = useRef(null);
   const emailInputRef = useRef(null);
   const passwordInputRef = useRef(null);
   const authnumberInputRef = useRef(null);
@@ -29,6 +30,10 @@ export default function Signup({ navigation }) {
 
   const onPressLogin = async () => {
     console.log("buttonpressed");
+    if (!name) {
+      nameInputRef.current.focus();
+      return Alert.alert("내용을 입력해주세요");
+    }
     if (!email) {
       emailInputRef.current.focus();
       return Alert.alert("내용을 입력해주세요");
@@ -52,7 +57,7 @@ export default function Signup({ navigation }) {
         email,
         passwordCheck
       );
-      console.log(userCredential);
+      console.log(userCredential.uid);
       await firebase.auth().signOut();
       navigation.navigate("Login");
     } catch (error) {
@@ -77,18 +82,25 @@ export default function Signup({ navigation }) {
 
   return (
     <Container>
-      <BackHeader onPress={() => navigation.navigate("Login")} />
-      <GroupContainer>
-        <SignupTextInputBoxWithButton
+      <KeyboardAvoidingView>
+        <BackHeader onPress={() => navigation.navigate("Login")} />
+        <SignupTextInputBox
+          title={"이름"}
+          value={name}
+          onChangeText={(text) => setName(text)}
+          autoCapitalize="none"
+          onref={nameInputRef}
+          keyboardType={"email-address"}
+        />
+        <SignupTextInputBox
           title={"이메일"}
-          buttonText={"중복확인"}
           value={email}
           onChangeText={(text) => {
             setEmail(text);
           }}
-          keyboardType={"email-address"}
           autoCapitalize="none"
           onref={emailInputRef}
+          keyboardType={"email-address"}
         />
         <SignupTextInputBoxWithButton
           title={"인증번호"}
@@ -101,8 +113,6 @@ export default function Signup({ navigation }) {
           keyboardType={"number-pad"}
           onref={authnumberInputRef}
         />
-      </GroupContainer>
-      <GroupContainer>
         <SignupTextInputBoxWithButton
           title={
             "패스워드( 6글자이상 + 영문,숫자 최소 하나씩 이상 조합하깅 -! )"
@@ -123,17 +133,17 @@ export default function Signup({ navigation }) {
           autoCapitalize="none"
           onref={passwordCheckInputRef}
         />
-      </GroupContainer>
-      <BottomContentsContainer>
-        <CustomButton
-          backgroundcolor={"white"}
-          bordercolor={GRAY_COLOR_200}
-          onPress={onPressLogin}
-          textcolor={SKY_BLUE_500}
-          text={"가입하기 - !"}
-          activity={loading}
-        />
-      </BottomContentsContainer>
+        <ButtonContainer>
+          <CustomButton
+            backgroundcolor={"white"}
+            bordercolor={GRAY_COLOR_200}
+            onPress={onPressLogin}
+            textcolor={SKY_BLUE_500}
+            text={"가입하기 - !"}
+            activity={loading}
+          />
+        </ButtonContainer>
+      </KeyboardAvoidingView>
     </Container>
   );
 }

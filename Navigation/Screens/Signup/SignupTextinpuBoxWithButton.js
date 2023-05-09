@@ -3,7 +3,9 @@ import styled from "styled-components/native";
 import CustomButton from "../../../Components/CutsomButton";
 import { GRAY_COLOR_200, SKY_BLUE_500 } from "../../../Assets/Colors/color";
 
-const Continer = styled.View``;
+const Continer = styled.View`
+  margin-top: 2%;
+`;
 
 const Header = styled.Text`
   color: ${SKY_BLUE_500};
@@ -38,6 +40,7 @@ export default function SignupTextInputBoxWithButton({
   keyboardType,
   autoCapitalize,
   onref,
+  onPress,
 }) {
   return (
     <Continer>
@@ -59,6 +62,7 @@ export default function SignupTextInputBoxWithButton({
           bordercolor={GRAY_COLOR_200}
           textcolor={"white"}
           autoCapitalize={autoCapitalize}
+          onPress={onPress}
         />
       </TextIputButtonContainer>
     </Continer>
