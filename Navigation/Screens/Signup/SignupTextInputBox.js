@@ -27,6 +27,8 @@ export default function SignupTextInputBox({
   onChangeText,
   onref,
   keyboardType,
+  placeholder,
+  secureTextEntry,
 }) {
   return (
     <Continer>
@@ -35,9 +37,10 @@ export default function SignupTextInputBox({
         value={value}
         autoCapitalize="none"
         onChangeText={onChangeText}
-        secureTextEntry
+        secureTextEntry={secureTextEntry}
         ref={onref}
         keyboardType={keyboardType}
+        placeholder={placeholder}
       />
     </Continer>
   );

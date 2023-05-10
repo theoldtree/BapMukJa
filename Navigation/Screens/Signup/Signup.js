@@ -11,7 +11,7 @@ import BackHeader from "../../../Components/BackHeader";
 import firestore from "@react-native-firebase/firestore";
 
 const ButtonContainer = styled.View`
-  margin-top: 45%;
+  margin-top: 20%;
 `;
 
 export default function Signup({ navigation }) {
@@ -20,6 +20,7 @@ export default function Signup({ navigation }) {
   const [name, setName] = useState("");
   const [authnumber, setAuthnumber] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
+  const [phonenumber, setPhonenumber] = useState("");
   const [loading, setLoading] = useState(false);
 
   const nameInputRef = useRef(null);
@@ -27,6 +28,7 @@ export default function Signup({ navigation }) {
   const passwordInputRef = useRef(null);
   const authnumberInputRef = useRef(null);
   const passwordCheckInputRef = useRef(null);
+  const phoneNumberCheckInputRef = useRef(null);
 
   const onPressLogin = async () => {
     console.log("buttonpressed");
@@ -50,6 +52,10 @@ export default function Signup({ navigation }) {
       passwordCheckInputRef.current.focus();
       return Alert.alert("내용을 입력해주세요");
     }
+    if (!phonenumber) {
+      phoneNumberCheckInputRef.current.focus();
+      return Alert.alert("내용을 입력해주세요");
+    }
     if (loading) return;
     setLoading(true);
     try {
@@ -62,7 +68,10 @@ export default function Signup({ navigation }) {
         .collection("users")
         .doc(userCredential.user.uid)
         .set({
+          email: email,
           name: name,
+          password: password,
+          phonenumber: phonenumber,
         });
       console.log("useradd" + useradd);
       await firebase.auth().signOut();
@@ -95,6 +104,7 @@ export default function Signup({ navigation }) {
           autoCapitalize="none"
           onref={nameInputRef}
           keyboardType={"email-address"}
+          placeholder="이병건"
         />
         <SignupTextInputBox
           title={"이메일"}
@@ -105,6 +115,7 @@ export default function Signup({ navigation }) {
           autoCapitalize="none"
           onref={emailInputRef}
           keyboardType={"email-address"}
+          placeholder="calmdownman@naver.com"
         />
         <SignupTextInputBoxWithButton
           title={"인증번호"}
@@ -136,6 +147,18 @@ export default function Signup({ navigation }) {
           onChangeText={(text) => setPasswordCheck(text)}
           autoCapitalize="none"
           onref={passwordCheckInputRef}
+          secureTextEntry={true}
+        />
+        <SignupTextInputBox
+          title={"휴대전화번호"}
+          value={phonenumber}
+          onChangeText={(text) => {
+            setPhonenumber(text);
+          }}
+          autoCapitalize="none"
+          onref={phoneNumberCheckInputRef}
+          keyboardType={"number-pad"}
+          placeholder="01077770000"
         />
         <ButtonContainer>
           <CustomButton
