@@ -56,6 +56,10 @@ export default function Signup({ navigation }) {
       phoneNumberCheckInputRef.current.focus();
       return Alert.alert("내용을 입력해주세요");
     }
+    if (password !== passwordCheck) {
+      passwordCheckInputRef.current.focus();
+      return Alert.alert("패스워드 재확인이 일치하지 않습니다");
+    }
     if (loading) return;
     setLoading(true);
     try {
@@ -85,9 +89,6 @@ export default function Signup({ navigation }) {
         case "auth/weak-password":
           return Alert.alert("보안강도가 낮은 암호 입니다");
       }
-      if (password !== passwordCheck)
-        return Alert.alert("패스워드 재확인이 일치하지 않습니다");
-      else console.log(error);
     } finally {
       setLoading(false);
     }
