@@ -60,6 +60,11 @@ export default function Signup({ navigation }) {
       passwordCheckInputRef.current.focus();
       return Alert.alert("패스워드 재확인이 일치하지 않습니다");
     }
+    if (phonenumber.length !== 11) {
+      phoneNumberCheckInputRef.current.focus();
+      return Alert.alert("11자리의 핸드폰 번호를 입력해주세요!");
+    }
+    console.log(phonenumber.length);
     if (loading) return;
     setLoading(true);
     try {
