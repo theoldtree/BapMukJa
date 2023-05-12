@@ -25,11 +25,10 @@ export default function FriendInvite({ navigation }) {
         });
         setIsSearched(true);
         await console.log(uid, user);
+        // await firebase.firestore().collection("freindlist").doc(uid).set({});
       } else {
         return Alert.alert("검색된 번호가 없습니다!");
       }
-      // uid 값을 통하여 collection(freindlist)에 저장 -> 이때 '나'의 uid값과 이름을 보냄
-      // 검색된 친구가 있을경우 textinput아래에 뜨도록 표시
     } catch (error) {}
   };
   return (

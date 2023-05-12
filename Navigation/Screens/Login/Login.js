@@ -9,6 +9,7 @@ import {
 import CusomButton from "../../../Components/CutsomButton";
 import auth from "@react-native-firebase/auth";
 import { Alert } from "react-native";
+import firestore from "@react-native-firebase/firestore";
 
 const Logo = styled.Image`
   width: 100%;
@@ -64,16 +65,19 @@ export default function Login({ navigation }) {
         password
       );
       console.log(userCredential.user.uid);
+      const userdata = await firestore()
+        .collection("users")
+        .doc(userCredential.user.uid)
+        .get();
+      console.log(userdata);
     } catch (error) {
       console.log(error.code);
       switch (error.code) {
         case "auth/invalid-email":
         case "auth/user-not-found":
           return Alert.alert("존재하지 않는 이메일 계정입니다");
-          break;
         case "auth/wrong-password":
           return Alert.alert("패스워드가 일치하지 않습니다");
-          break;
       }
     } finally {
       setLoading(false);
