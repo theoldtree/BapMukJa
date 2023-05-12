@@ -1,10 +1,10 @@
-// In App.js in a new project
 import React, { useEffect } from "react";
-import firestore from "@react-native-firebase/firestore";
 import auth from "@react-native-firebase/auth";
 import { useState } from "react";
 import LoggedInNavigator from "./Navigation/Navigator/LoggedInNavigator";
 import LoggedOutNavigator from "./Navigation/Navigator/LoggedOutNavigator";
+import { Provider } from "react-redux";
+import { store } from "./Redux/store";
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -17,5 +17,9 @@ export default function App() {
       }
     });
   }, []);
-  return isLoggedIn ? <LoggedInNavigator /> : <LoggedOutNavigator />;
+  return (
+    <Provider store={store}>
+      {isLoggedIn ? <LoggedInNavigator /> : <LoggedOutNavigator />}
+    </Provider>
+  );
 }

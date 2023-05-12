@@ -10,6 +10,8 @@ import CusomButton from "../../../Components/CutsomButton";
 import auth from "@react-native-firebase/auth";
 import { Alert } from "react-native";
 import firestore from "@react-native-firebase/firestore";
+import { useDispatch, useSelector } from "react-redux";
+import { updateInfo } from "../../../Redux/action";
 
 const Logo = styled.Image`
   width: 100%;
@@ -64,12 +66,15 @@ export default function Login({ navigation }) {
         email,
         password
       );
-      console.log(userCredential.user.uid);
       const userdata = await firestore()
         .collection("users")
         .doc(userCredential.user.uid)
         .get();
-      console.log(userdata);
+      console.log("userdata : " + userdata);
+      // redux를 이용하여 유저정보 store 에 저장하기
+      // useDispatch(updateInfo(userdata));
+      // const userInfo = useSelector((state) => state.user.userInfo);
+      console.log("userInfo" + userInfo);
     } catch (error) {
       console.log(error.code);
       switch (error.code) {
