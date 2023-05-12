@@ -12,7 +12,7 @@ const ProfileContainer = styled.View`
   padding-right: 4%;
 `;
 
-export default function ProfileWithButton({ text, name }) {
+export default function ProfileWithButton({ text, name, onPress }) {
   return (
     <ProfileContainer>
       <Profile name={name} width={"82%"} />
@@ -21,6 +21,7 @@ export default function ProfileWithButton({ text, name }) {
         bordercolor={SKY_BLUE_300}
         text={text}
         textcolor={SKY_BLUE_100}
+        onPress={onPress}
       />
     </ProfileContainer>
   );

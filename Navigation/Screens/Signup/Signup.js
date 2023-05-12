@@ -73,16 +73,12 @@ export default function Signup({ navigation }) {
         passwordCheck
       );
       console.log(userCredential.user.uid);
-      const useradd = await firestore()
-        .collection("users")
-        .doc(userCredential.user.uid)
-        .set({
-          email: email,
-          name: name,
-          password: password,
-          phonenumber: phonenumber,
-        });
-      console.log("useradd" + useradd);
+      await firestore().collection("users").doc(userCredential.user.uid).set({
+        email: email,
+        name: name,
+        password: password,
+        phonenumber: phonenumber,
+      });
       await firebase.auth().signOut();
       navigation.navigate("Login");
     } catch (error) {
