@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components/native";
 import { Container } from "../../../Components/Container";
 import {
@@ -11,7 +11,7 @@ import auth from "@react-native-firebase/auth";
 import { Alert } from "react-native";
 import firestore from "@react-native-firebase/firestore";
 import { useDispatch, useSelector } from "react-redux";
-import { updateInfo } from "../../../Redux/action";
+import { infoSlice, setUser } from "../../../Redux/createSlice";
 
 const Logo = styled.Image`
   width: 100%;
@@ -46,7 +46,6 @@ export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-
   const emailInputRef = useRef(null);
   const passwordInputRef = useRef(null);
 
@@ -62,21 +61,8 @@ export default function Login({ navigation }) {
     if (loading) return;
     setLoading(true);
     try {
-      const userCredential = await auth().signInWithEmailAndPassword(
-        email,
-        password
-      );
-      const userdata = await firestore()
-        .collection("users")
-        .doc(userCredential.user.uid)
-        .get();
-      console.log("userdata : " + userdata);
-      // redux를 이용하여 유저정보 store 에 저장하기
-      // useDispatch(updateInfo(userdata));
-      // const userInfo = useSelector((state) => state.user.userInfo);
-      console.log("userInfo" + userInfo);
+      await auth().signInWithEmailAndPassword(email, password);
     } catch (error) {
-      console.log(error.code);
       switch (error.code) {
         case "auth/invalid-email":
         case "auth/user-not-found":

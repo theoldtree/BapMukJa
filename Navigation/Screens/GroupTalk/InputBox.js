@@ -33,11 +33,11 @@ const IconButton = styled.TouchableOpacity`
   padding: 1%;
 `;
 
-export default function InputBox() {
+export default function InputBox(onPress) {
   return (
     <FoodSearchBoxContainer>
       <FoodSearhBox placeholder={"  맛집, 음식이름 입력"} maxLength={60} />
-      <IconButton>
+      <IconButton onPress={onPress}>
         <FontAwesome5 name="plus" size={30} color={SKY_BLUE_400} />
       </IconButton>
     </FoodSearchBoxContainer>

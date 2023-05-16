@@ -1,6 +1,4 @@
-export const updateInfo = (userInfo) => {
-  return {
-    type: "UPDATE_USER",
-    payload: userInfo,
-  };
-};
+export const updateInfo = (userInfo) => ({
+  type: "UPDATE_USER",
+  payload: userInfo,
+});

@@ -54,6 +54,8 @@ export default function GroupTalk({ route, navigation }) {
     );
   };
 
+  const onSubmit = () => {};
+
   return (
     <Container>
       <BackHeader
@@ -68,7 +70,8 @@ export default function GroupTalk({ route, navigation }) {
         renderItem={renderItem}
         keyExtrator={(item) => item.date}
       />
-      <InputBox />
+      <Title>0</Title>
+      <InputBox onPress={onSubmit} />
     </Container>
   );
 }
