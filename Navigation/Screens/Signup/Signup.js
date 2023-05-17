@@ -31,7 +31,6 @@ export default function Signup({ navigation }) {
   const phoneNumberCheckInputRef = useRef(null);
 
   const onPressLogin = async () => {
-    console.log("buttonpressed");
     if (!name) {
       nameInputRef.current.focus();
       return Alert.alert("내용을 입력해주세요");
@@ -64,7 +63,6 @@ export default function Signup({ navigation }) {
       phoneNumberCheckInputRef.current.focus();
       return Alert.alert("11자리의 핸드폰 번호를 입력해주세요!");
     }
-    console.log(phonenumber.length);
     if (loading) return;
     setLoading(true);
     try {
@@ -72,7 +70,6 @@ export default function Signup({ navigation }) {
         email,
         passwordCheck
       );
-      console.log(userCredential.user.uid);
       await firestore().collection("users").doc(userCredential.user.uid).set({
         email: email,
         name: name,

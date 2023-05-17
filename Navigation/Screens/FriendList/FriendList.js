@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ListHeader from "../../../Components/ListHeader";
 import { Container } from "../../../Components/Container";
 import RequestBox from "./RequestBox";
 import MultipleProfileContainer from "./MultipleProfileContainer";
 import MyProfile from "./Myprofile";
 import { Title } from "../../../Components/Title";
+import { useSelector } from "react-redux";
 
 export default function FriendList({ navigation }) {
   const [requestlist, setRequestList] = useState([
@@ -48,7 +49,7 @@ export default function FriendList({ navigation }) {
       name: "한예슬",
     },
   ]);
-
+  const user = useSelector((state) => state.user);
   return (
     <Container>
       <ListHeader
@@ -62,7 +63,7 @@ export default function FriendList({ navigation }) {
           <>
             <MyProfile title={"나의 프로필"} profile={myProfile} />
             <RequestBox title={"친구요청"} requestlist={requestlist} />
-            <Title>{"친구목록"}</Title>
+            <Title>친구목록</Title>
           </>
         }
       />

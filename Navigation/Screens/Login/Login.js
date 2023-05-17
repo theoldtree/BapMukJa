@@ -10,8 +10,8 @@ import CusomButton from "../../../Components/CutsomButton";
 import auth from "@react-native-firebase/auth";
 import { Alert } from "react-native";
 import firestore from "@react-native-firebase/firestore";
-import { useDispatch, useSelector } from "react-redux";
-import { infoSlice, setUser } from "../../../Redux/createSlice";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../../Redux/store";
 
 const Logo = styled.Image`
   width: 100%;
@@ -46,6 +46,7 @@ export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [userInfo, setUserInfo] = useState({});
   const emailInputRef = useRef(null);
   const passwordInputRef = useRef(null);
 
@@ -61,7 +62,14 @@ export default function Login({ navigation }) {
     if (loading) return;
     setLoading(true);
     try {
-      await auth().signInWithEmailAndPassword(email, password);
+      const user = await auth().signInWithEmailAndPassword(email, password);
+      const userdata = await firestore()
+        .collection("users")
+        .doc(user.user.uid)
+        .get();
+      console.log(userdata._data);
+      const dispatch = useDispatch();
+      dispatch(setUser(userdata._data));
     } catch (error) {
       switch (error.code) {
         case "auth/invalid-email":

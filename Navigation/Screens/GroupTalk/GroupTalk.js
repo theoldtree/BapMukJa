@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components/native";
 import { Container } from "../../../Components/Container";
 import BackHeader from "../../../Components/BackHeader";
@@ -7,6 +7,7 @@ import { Title } from "../../../Components/Title";
 import { GRAY_COLOR_400, SKY_BLUE_500 } from "../../../Assets/Colors/color";
 import FeelingContainer from "./FeelingContainer";
 import InputBox from "./InputBox";
+import { useSelector } from "react-redux";
 
 const TalkList = styled.SectionList``;
 
@@ -54,8 +55,6 @@ export default function GroupTalk({ route, navigation }) {
     );
   };
 
-  const onSubmit = () => {};
-
   return (
     <Container>
       <BackHeader
@@ -70,8 +69,7 @@ export default function GroupTalk({ route, navigation }) {
         renderItem={renderItem}
         keyExtrator={(item) => item.date}
       />
-      <Title>0</Title>
-      <InputBox onPress={onSubmit} />
+      <InputBox />
     </Container>
   );
 }

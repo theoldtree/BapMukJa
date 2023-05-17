@@ -13,7 +13,6 @@ const Conatiner = styled.View`
 `;
 
 export default function FeelingContainer({ feeling }) {
-  console.log(feeling);
   return (
     <Conatiner>
       <FeelingBox name={"heart"} color={RED_COLOR_300} num={feeling.best} />
