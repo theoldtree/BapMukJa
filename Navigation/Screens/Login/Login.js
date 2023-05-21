@@ -9,9 +9,6 @@ import {
 import CusomButton from "../../../Components/CutsomButton";
 import auth from "@react-native-firebase/auth";
 import { Alert } from "react-native";
-import firestore from "@react-native-firebase/firestore";
-import { useDispatch } from "react-redux";
-import { setUser } from "../../../Redux/userslice";
 
 const Logo = styled.Image`
   width: 100%;

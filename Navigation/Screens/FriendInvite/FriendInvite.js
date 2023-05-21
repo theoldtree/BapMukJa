@@ -5,6 +5,7 @@ import ProfileWithButton from "../../../Components/ProfileWithButton";
 import { TextInputBox } from "../../../Components/TextInputBox";
 import { Alert } from "react-native";
 import { firebase } from "@react-native-firebase/firestore";
+import firestore from "@react-native-firebase/firestore";
 
 export default function FriendInvite({ navigation, route }) {
   const [phonenumber, setPhoneNumber] = useState("");
@@ -31,7 +32,9 @@ export default function FriendInvite({ navigation, route }) {
     } catch (error) {}
   };
 
-  const onPressInvite = async () => {};
+  const onPressInvite = async () => {
+    await firestore().collection("inviteRequestList").doc(uid).set(userData);
+  };
   return (
     <Container>
       <BackHeader
@@ -47,7 +50,11 @@ export default function FriendInvite({ navigation, route }) {
         onChangeText={(text) => setPhoneNumber(text)}
       />
       {isSearched ? (
-        <ProfileWithButton name={searchedUserName} text={"초대"} />
+        <ProfileWithButton
+          name={searchedUserName}
+          text={"초대"}
+          onPress={onPressInvite}
+        />
       ) : null}
     </Container>
   );
