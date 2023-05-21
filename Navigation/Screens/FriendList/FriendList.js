@@ -15,20 +15,7 @@ export default function FriendList({ navigation }) {
   const [loading, setLoading] = useState(true);
   const [userData, setUserData] = useState({});
   const [uid, setUid] = useState("");
-  const [requestlist, setRequestList] = useState([
-    {
-      name: "김철수",
-      id: 1,
-    },
-    {
-      name: "이영희",
-      id: 2,
-    },
-    {
-      name: "박민준",
-      id: 3,
-    },
-  ]);
+  const [requestlist, setRequestList] = useState([]);
   const [friendlist, setFreindList] = useState([
     {
       id: 1,
@@ -58,13 +45,21 @@ export default function FriendList({ navigation }) {
   useEffect(() => {
     async function fetchUser() {
       const currentUser = auth().currentUser;
-      if (currentUser) {
-        const uid = currentUser.uid;
-        const userDoc = await firestore().collection("users").doc(uid).get();
-        setUserData(userDoc._data);
-        setUid(uid);
-        setLoading(false);
-      }
+      const uid = currentUser.uid;
+      const userDoc = await firestore().collection("users").doc(uid).get();
+      const invitationListRef = await firestore()
+        .collection("invitationList")
+        .doc(uid)
+        .collection("requestList");
+      invitationListRef.get().then((querySnapShot) => {
+        setRequestList(querySnapShot._docs);
+      });
+      console.log("requestList", invitationListRef);
+      setUserData(userDoc._data);
+      setUid(uid);
+      setLoading(false);
+      console.log("uid", uid);
+      console.log("userDoc", userDoc);
     }
     fetchUser();
   }, []);

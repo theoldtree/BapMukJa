@@ -11,6 +11,7 @@ export default function FriendInvite({ navigation, route }) {
   const [phonenumber, setPhoneNumber] = useState("");
   const [isSearched, setIsSearched] = useState(false);
   const [searchedUserName, setSearchedUserName] = useState("");
+  const [searchedUserID, setSearchedUserID] = useState("");
   const { userData, uid } = route.params;
 
   const onSubmitEditing = async () => {
@@ -22,6 +23,7 @@ export default function FriendInvite({ navigation, route }) {
       if (!queryRef.empty) {
         console.log(queryRef);
         queryRef.forEach((doc) => {
+          setSearchedUserID(doc.id);
           setSearchedUserName(doc._data.name);
           console.log(doc);
         });
@@ -33,7 +35,12 @@ export default function FriendInvite({ navigation, route }) {
   };
 
   const onPressInvite = async () => {
-    await firestore().collection("inviteRequestList").doc(uid).set(userData);
+    await firestore()
+      .collection("invitationList")
+      .doc(searchedUserID)
+      .collection("requestList")
+      .doc(uid)
+      .set(userData);
   };
   return (
     <Container>

@@ -18,7 +18,7 @@ const RequestList = styled.FlatList``;
 
 export default function RequestBox({ title, requestlist }) {
   const renderItem = ({ item }) => {
-    return <ProfileWithButton text={"수락"} name={item.name} />;
+    return <ProfileWithButton text={"수락"} name={item._data.name} />;
   };
 
   return (
