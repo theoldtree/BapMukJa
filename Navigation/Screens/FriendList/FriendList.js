@@ -16,32 +16,7 @@ export default function FriendList({ navigation }) {
   const [userData, setUserData] = useState({});
   const [uid, setUid] = useState("");
   const [requestlist, setRequestList] = useState([]);
-  const [friendlist, setFreindList] = useState([
-    {
-      id: 1,
-      name: "김지민",
-    },
-    {
-      id: 2,
-      name: "이지은",
-    },
-    {
-      id: 3,
-      name: "박영호",
-    },
-    {
-      id: 4,
-      name: "최민수",
-    },
-    {
-      id: 5,
-      name: "홍길동",
-    },
-    {
-      id: 6,
-      name: "한예슬",
-    },
-  ]);
+  const [friendList, setFriendList] = useState();
   useEffect(() => {
     async function fetchUser() {
       const currentUser = auth().currentUser;
@@ -54,12 +29,17 @@ export default function FriendList({ navigation }) {
       invitationListRef.get().then((querySnapShot) => {
         setRequestList(querySnapShot._docs);
       });
-      console.log("requestList", invitationListRef);
+      const friendListRef = await firestore()
+        .collection("friendList")
+        .doc(uid)
+        .collection("friend");
+      friendListRef.get().then((querySnapShot) => {
+        console.log(querySnapShot._docs);
+        setFriendList(querySnapShot._docs);
+      });
       setUserData(userDoc._data);
       setUid(uid);
       setLoading(false);
-      console.log("uid", uid);
-      console.log("userDoc", userDoc);
     }
     fetchUser();
   }, []);
@@ -77,7 +57,7 @@ export default function FriendList({ navigation }) {
       />
       <MultipleProfileContainer
         title={"친구목록"}
-        list={friendlist}
+        list={friendList}
         listheadercomponent={
           <>
             <MyProfile title={"나의 프로필"} profile={userData.name} />

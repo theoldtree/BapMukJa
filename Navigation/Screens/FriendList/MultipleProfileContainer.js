@@ -10,7 +10,7 @@ export default function MultipleProfileContainer({
   listheadercomponent,
 }) {
   const renderItem = ({ item }) => {
-    return <Profile name={item.name} width={"92%"} />;
+    return <Profile name={item._data.name} width={"92%"} />;
   };
 
   return (

@@ -10,7 +10,7 @@ import firestore from "@react-native-firebase/firestore";
 export default function FriendInvite({ navigation, route }) {
   const [phonenumber, setPhoneNumber] = useState("");
   const [isSearched, setIsSearched] = useState(false);
-  const [searchedUserName, setSearchedUserName] = useState("");
+  const [searchedUserData, setSearchedUsderData] = useState("");
   const [searchedUserID, setSearchedUserID] = useState("");
   const { userData, uid } = route.params;
 
@@ -21,10 +21,9 @@ export default function FriendInvite({ navigation, route }) {
         .where("phonenumber", "==", phonenumber)
         .get();
       if (!queryRef.empty) {
-        console.log(queryRef);
         queryRef.forEach((doc) => {
           setSearchedUserID(doc.id);
-          setSearchedUserName(doc._data.name);
+          setSearchedUsderData(doc);
           console.log(doc);
         });
         setIsSearched(true);
@@ -58,7 +57,7 @@ export default function FriendInvite({ navigation, route }) {
       />
       {isSearched ? (
         <ProfileWithButton
-          name={searchedUserName}
+          item={searchedUserData}
           text={"초대"}
           onPress={onPressInvite}
         />
