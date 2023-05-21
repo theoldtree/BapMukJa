@@ -18,7 +18,7 @@ export default function ProfileContainer({ title, profile }) {
   return (
     <Container>
       <Title>{title}</Title>
-      <Profile name={profile.name} width={"92%"} />
+      <Profile name={profile} width={"92%"} />
     </Container>
   );
 }

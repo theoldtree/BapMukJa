@@ -5,9 +5,12 @@ import RequestBox from "./RequestBox";
 import MultipleProfileContainer from "./MultipleProfileContainer";
 import MyProfile from "./Myprofile";
 import { Title } from "../../../Components/Title";
-import { useSelector } from "react-redux";
+import auth from "@react-native-firebase/auth";
+import firestore from "@react-native-firebase/firestore";
 
 export default function FriendList({ navigation }) {
+  const [loading, setLoading] = useState(true);
+  const [userData, setUserData] = useState({});
   const [requestlist, setRequestList] = useState([
     {
       name: "김철수",
@@ -22,7 +25,6 @@ export default function FriendList({ navigation }) {
       id: 3,
     },
   ]);
-  const [myProfile, setMyProfile] = useState({ id: 10000, name: "이병건" });
   const [friendlist, setFreindList] = useState([
     {
       id: 1,
@@ -49,8 +51,19 @@ export default function FriendList({ navigation }) {
       name: "한예슬",
     },
   ]);
-  const user = useSelector((state) => state.user);
-  return (
+  useEffect(() => {
+    async function fetchUser() {
+      const currentUser = auth().currentUser;
+      if (currentUser) {
+        const uid = currentUser.uid;
+        const userDoc = await firestore().collection("users").doc(uid).get();
+        setUserData(userDoc._data);
+        setLoading(false);
+      }
+    }
+    fetchUser();
+  }, []);
+  return loading ? null : (
     <Container>
       <ListHeader
         iconName={"adduser"}
@@ -61,7 +74,7 @@ export default function FriendList({ navigation }) {
         list={friendlist}
         listheadercomponent={
           <>
-            <MyProfile title={"나의 프로필"} profile={myProfile} />
+            <MyProfile title={"나의 프로필"} profile={userData.name} />
             <RequestBox title={"친구요청"} requestlist={requestlist} />
             <Title>친구목록</Title>
           </>
