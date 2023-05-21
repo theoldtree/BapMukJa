@@ -7,6 +7,9 @@ import MyProfile from "./Myprofile";
 import { Title } from "../../../Components/Title";
 import auth from "@react-native-firebase/auth";
 import firestore from "@react-native-firebase/firestore";
+import { ActivityIndicator } from "react-native";
+import { GRAY_COLOR_300 } from "../../../Assets/Colors/color";
+import { CenterView } from "../../../Components/CenterView";
 
 export default function FriendList({ navigation }) {
   const [loading, setLoading] = useState(true);
@@ -63,7 +66,11 @@ export default function FriendList({ navigation }) {
     }
     fetchUser();
   }, []);
-  return loading ? null : (
+  return loading ? (
+    <CenterView>
+      <ActivityIndicator color={GRAY_COLOR_300} />
+    </CenterView>
+  ) : (
     <Container>
       <ListHeader
         iconName={"adduser"}
