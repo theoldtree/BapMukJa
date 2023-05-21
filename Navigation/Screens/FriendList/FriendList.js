@@ -14,6 +14,7 @@ import { CenterView } from "../../../Components/CenterView";
 export default function FriendList({ navigation }) {
   const [loading, setLoading] = useState(true);
   const [userData, setUserData] = useState({});
+  const [uid, setUid] = useState("");
   const [requestlist, setRequestList] = useState([
     {
       name: "김철수",
@@ -61,6 +62,7 @@ export default function FriendList({ navigation }) {
         const uid = currentUser.uid;
         const userDoc = await firestore().collection("users").doc(uid).get();
         setUserData(userDoc._data);
+        setUid(uid);
         setLoading(false);
       }
     }
@@ -74,7 +76,9 @@ export default function FriendList({ navigation }) {
     <Container>
       <ListHeader
         iconName={"adduser"}
-        onPress={() => navigation.navigate("FriendInvite")}
+        onPress={() =>
+          navigation.navigate("FriendInvite", { userData: userData, uid: uid })
+        }
       />
       <MultipleProfileContainer
         title={"친구목록"}

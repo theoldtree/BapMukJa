@@ -18,7 +18,7 @@ export const ProfileText = styled.Text`
   color: ${SKY_BLUE_500};
 `;
 
-export default function Profile({ name, width }) {
+export default function Profile({ name, width, info }) {
   return (
     <ProfileView width={width}>
       <ProfileText>{name}</ProfileText>

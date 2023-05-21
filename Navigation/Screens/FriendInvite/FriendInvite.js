@@ -6,11 +6,11 @@ import { TextInputBox } from "../../../Components/TextInputBox";
 import { Alert } from "react-native";
 import { firebase } from "@react-native-firebase/firestore";
 
-export default function FriendInvite({ navigation }) {
+export default function FriendInvite({ navigation, route }) {
   const [phonenumber, setPhoneNumber] = useState("");
-  const [user, setUser] = useState({});
-  const [uid, setUid] = useState();
   const [isSearched, setIsSearched] = useState(false);
+  const [searchedUserName, setSearchedUserName] = useState("");
+  const { userData, uid } = route.params;
 
   const onSubmitEditing = async () => {
     try {
@@ -19,18 +19,19 @@ export default function FriendInvite({ navigation }) {
         .where("phonenumber", "==", phonenumber)
         .get();
       if (!queryRef.empty) {
-        setUser(queryRef.docs);
+        console.log(queryRef);
         queryRef.forEach((doc) => {
-          setUid(doc.id);
+          setSearchedUserName(doc._data.name);
+          console.log(doc);
         });
         setIsSearched(true);
-        await console.log(uid, user);
-        // await firebase.firestore().collection("freindlist").doc(uid).set({});
       } else {
         return Alert.alert("검색된 번호가 없습니다!");
       }
     } catch (error) {}
   };
+
+  const onPressInvite = async () => {};
   return (
     <Container>
       <BackHeader
@@ -46,7 +47,7 @@ export default function FriendInvite({ navigation }) {
         onChangeText={(text) => setPhoneNumber(text)}
       />
       {isSearched ? (
-        <ProfileWithButton name={user[0]._data.name} text={"초대"} />
+        <ProfileWithButton name={searchedUserName} text={"초대"} />
       ) : null}
     </Container>
   );
