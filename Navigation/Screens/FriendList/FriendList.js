@@ -34,12 +34,12 @@ export default function FriendList({ navigation }) {
         .doc(uid)
         .collection("friend");
       friendListRef.get().then((querySnapShot) => {
-        console.log(querySnapShot._docs);
         setFriendList(querySnapShot._docs);
       });
       setUserData(userDoc._data);
       setUid(uid);
       setLoading(false);
+      console.log(userData);
     }
     fetchUser();
   }, []);

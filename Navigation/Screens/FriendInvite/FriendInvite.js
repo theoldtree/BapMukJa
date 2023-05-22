@@ -28,7 +28,6 @@ export default function FriendInvite({ navigation, route }) {
         queryRef.forEach((doc) => {
           setSearchedUserID(doc.id);
           setSearchedUsderData(doc);
-          console.log(doc);
         });
         setIsSearched(true);
       } else {
