@@ -14,6 +14,10 @@ export default function FriendInvite({ navigation, route }) {
   const [searchedUserID, setSearchedUserID] = useState("");
   const { userData, uid } = route.params;
 
+  /**친구 검색 버튼
+   * 전화번호로 상대 방 검색
+   * 전화번호로 검색 -> 프로필 정보 및 아이디 값 수신
+   */
   const onSubmitEditing = async () => {
     try {
       const userRef = firebase.firestore().collection("users");
@@ -33,6 +37,10 @@ export default function FriendInvite({ navigation, route }) {
     } catch (error) {}
   };
 
+  /**
+   * 초대하기 버튼
+   * invitationList에 검색된 유저 아이디를 기반으로 requestList에 나의 아이디값 및 정보 저장
+   */
   const onPressInvite = async () => {
     await firestore()
       .collection("invitationList")
@@ -41,6 +49,7 @@ export default function FriendInvite({ navigation, route }) {
       .doc(uid)
       .set(userData);
   };
+
   return (
     <Container>
       <BackHeader

@@ -61,7 +61,12 @@ export default function FriendList({ navigation }) {
         listheadercomponent={
           <>
             <MyProfile title={"나의 프로필"} profile={userData.name} />
-            <RequestBox title={"친구요청"} requestlist={requestlist} />
+            <RequestBox
+              title={"친구요청"}
+              requestlist={requestlist}
+              uid={uid}
+              userDoc={userData}
+            />
             <Title>친구목록</Title>
           </>
         }
