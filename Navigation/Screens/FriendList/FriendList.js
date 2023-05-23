@@ -17,6 +17,7 @@ export default function FriendList({ navigation }) {
   const [uid, setUid] = useState("");
   const [requestlist, setRequestList] = useState([]);
   const [friendList, setFriendList] = useState();
+
   useEffect(() => {
     async function fetchUser() {
       const currentUser = auth().currentUser;
@@ -65,6 +66,7 @@ export default function FriendList({ navigation }) {
               title={"친구요청"}
               requestlist={requestlist}
               uid={uid}
+              userData={userData}
               userDoc={userData}
             />
             <Title>친구목록</Title>

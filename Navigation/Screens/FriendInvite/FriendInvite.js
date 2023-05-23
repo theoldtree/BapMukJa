@@ -47,6 +47,7 @@ export default function FriendInvite({ navigation, route }) {
       .collection("requestList")
       .doc(uid)
       .set(userData);
+    return Alert.alert("초대 완료");
   };
 
   return (
