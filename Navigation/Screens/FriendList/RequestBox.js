@@ -23,14 +23,11 @@ const RequestList = styled.FlatList``;
 export default function RequestBox({ title, requestlist, uid, userData }) {
   const userRef = firebase.firestore().collection("users");
   const onPressAccept = async (item) => {
-    console.log("item", item);
     const queryRef = await userRef
       .where("phonenumber", "==", item._data.phonenumber)
       .get();
-    console.log("queryRef", queryRef);
     if (!queryRef.empty) {
       for (const doc of queryRef.docs) {
-        console.log("doc.id", doc.id);
         // 상대방의 친구목록 업데이트
         await firestore()
           .collection("friendList")
@@ -38,6 +35,7 @@ export default function RequestBox({ title, requestlist, uid, userData }) {
           .collection("friend")
           .doc(uid)
           .set(userData);
+
         // 현재 사용자의 친구목록 업데이트
         await firestore()
           .collection("friendList")
