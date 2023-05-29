@@ -16,7 +16,7 @@ export default function GroupInvite({ navigation }) {
   const [searchedUserData, setSearchedUsderData] = useState({});
   const [searchedUserID, setSearchedUserID] = useState("");
   const [isSearched, setIsSearched] = useState(false);
-  const [groupInfo, setGroupInfo] = useState({});
+  const [groupInfo, setGroupInfo] = useState([]);
   const groupNameInputRef = useRef();
   const phoneNumberInputRef = useRef();
 
@@ -24,10 +24,8 @@ export default function GroupInvite({ navigation }) {
     phoneNumberInputRef.current.focus();
   };
   const onSubmitPhoneNumber = async () => {
-    console.log(phoneNumber);
     try {
       const loginuserid = firebase.auth().currentUser.uid;
-      console.log(loginuserid);
       const friendRef = firebase
         .firestore()
         .collection("friendList")
@@ -49,8 +47,13 @@ export default function GroupInvite({ navigation }) {
       console.log(error);
     }
   };
-  const onPressCreate = () => {};
-  const onPressInvite = () => {};
+  const onPressGroupInvite = () => {
+    setGroupInfo([...groupInfo, searchedUserData]);
+  };
+
+  const onPressCreate = () => {
+    console.log(groupInfo);
+  };
   return (
     <Container>
       <BackHeader
@@ -77,7 +80,7 @@ export default function GroupInvite({ navigation }) {
         <ProfileWithButton
           item={searchedUserData}
           text={"초대"}
-          onPress={onPressInvite}
+          onPress={onPressGroupInvite}
         />
       ) : null}
       <BottomContentsContainer>
@@ -87,7 +90,7 @@ export default function GroupInvite({ navigation }) {
           bordercolor={GRAY_COLOR_200}
           textcolor={"white"}
           onPress={onPressCreate}
-          // onPress={() => navigation.navigate("Home", { screen: "GroupInvite" })}
+          onPress={() => navigation.navigate("Home", { screen: "GroupInvite" })}
         />
       </BottomContentsContainer>
     </Container>
